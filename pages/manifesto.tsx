@@ -8,24 +8,24 @@ import Typography from "@mui/material/Typography";
 // Components
 import { Layout } from "../components";
 
-const Home: NextPage = () => {
+const Manifesto: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Builder Band</title>
-        <meta name="description" content="The home of the builder band" />
+        <title>Manifesto</title>
+        <meta name="description" content="The Builder Band Manifesto" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Layout>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center" gutterBottom>
-              Welcome to the Builder Band!
+            <Typography variant="h2" align="center">
+              The Builder Band Manifesto
             </Typography>
-            <Typography variant="h5" align="center">
-              Home of the supercharged ⚡ builders who have performed notable
-              gigs in the Gitcoin ecosystem.
+            <Typography variant="body1" align="center">
+              Placeholder for the core values and principles of the Builder
+              Band.
             </Typography>
           </Grid>
         </Grid>
@@ -34,4 +34,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Manifesto;
