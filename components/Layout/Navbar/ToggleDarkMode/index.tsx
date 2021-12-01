@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
+import Context from "../../../../context";
 import DarkModeToggle from "react-dark-mode-toggle";
 
 const ToggleDarkMode = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
+  const { mode, toggleMode } = useContext(Context);
+
   return (
-    <DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={80} />
+    <DarkModeToggle
+      onChange={() => toggleMode()}
+      checked={mode === "dark"}
+      size={80}
+    />
   );
 };
 
