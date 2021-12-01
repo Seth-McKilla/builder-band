@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Context from "../context";
-import Cookies from "js-cookie";
-import theme from "../theme";
+import { createTheme } from "@mui/material";
+import { styleOverrides } from "../styles";
 
 // Mui
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -16,21 +16,23 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, []);
 
-  type Mode = "light" | "dark";
+  const [dark, setDark] = useState(false);
 
-  const initialMode: Mode = Cookies.get("mode") === "light" ? "light" : "dark";
-
-  const [mode, setMode] = useState(initialMode);
-  const toggleMode = () => {
-    setMode(mode === "light" ? "dark" : "light");
-    return Cookies.set("mode", mode);
-  };
-
-  console.log(mode);
+  const theme = createTheme({
+    palette: {
+      mode: dark ? "dark" : "light",
+    },
+    typography: {
+      fontFamily: ["Libre Baskerville", "serif"].join(","),
+    },
+    components: {
+      MuiCssBaseline: { styleOverrides },
+    },
+  });
 
   return (
-    <Context.Provider value={{ mode, toggleMode }}>
-      <ThemeProvider theme={theme(mode)}>
+    <Context.Provider value={{ dark, setDark }}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>

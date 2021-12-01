@@ -3,14 +3,10 @@ import Context from "../../../../context";
 import DarkModeToggle from "react-dark-mode-toggle";
 
 const ToggleDarkMode = () => {
-  const { mode, toggleMode } = useContext(Context);
+  const { dark, setDark } = useContext(Context);
 
   return (
-    <DarkModeToggle
-      onChange={() => toggleMode()}
-      checked={mode === "dark"}
-      size={80}
-    />
+    <DarkModeToggle onChange={() => setDark(!dark)} checked={dark} size={80} />
   );
 };
 

@@ -1,10 +1,12 @@
 import { createContext } from "react";
 
-type Context = {
-  mode: "light" | "dark";
-  toggleMode: () => void;
+type ThemeContext = boolean;
+
+const appCtxDefaultValue = {
+  dark: false,
+  setDark: (state: ThemeContext) => {},
 };
 
-const Context = createContext({});
+const Context = createContext(appCtxDefaultValue);
 
 export default Context;

@@ -6,7 +6,6 @@ import _ from "lodash";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 
 // Components
 import ToggleDarkMode from "./ToggleDarkMode";
@@ -19,18 +18,16 @@ const ButtonAppBar = () => {
     <Box mb={4}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start">
-            <Link href="/" passHref>
-              <a>
-                <Image
-                  src="/record-disk.svg"
-                  alt="Record disk"
-                  height={50}
-                  width={50}
-                />
-              </a>
-            </Link>
-          </IconButton>
+          <Link href="/" passHref>
+            <a>
+              <Image
+                src="/record-disk.svg"
+                alt="Record disk"
+                height={50}
+                width={50}
+              />
+            </a>
+          </Link>
           <Box sx={{ display: "flex", flexGrow: 1 }}>
             {routes.map((route, idx) => (
               <NavLink key={`${idx}-${route}`} name={route} />

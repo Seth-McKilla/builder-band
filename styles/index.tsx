@@ -1,25 +1,4 @@
-import { createTheme } from "@mui/material";
-
-const theme = (mode: "light" | "dark") =>
-  createTheme({
-    typography: {
-      fontFamily: ["Libre Baskerville", "serif"].join(","),
-    },
-    palette: {
-      mode,
-      primary: {
-        main: "#0F4C75",
-      },
-      secondary: {
-        main: "#FDCB9E",
-      },
-      info: {
-        main: "#00B7C2",
-      },
-    },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: `
+export const styleOverrides = `
         html,
         body {
           padding: 0;
@@ -44,9 +23,4 @@ const theme = (mode: "light" | "dark") =>
           -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
           background-color: #fff;
         }
-        `,
-      },
-    },
-  });
-
-export default theme;
+        `;
