@@ -12,12 +12,13 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { Layout, CardMember } from "../components";
 
 type Member = {
+  id: string;
   username: string;
   avatar: string;
 };
 
 const Manifesto: NextPage = () => {
-  const { data } = useSWR("/api/get-members", fetcher);
+  const { data } = useSWR("/api/get-users", fetcher);
 
   return (
     <div>
@@ -37,8 +38,8 @@ const Manifesto: NextPage = () => {
               <LinearProgress />
             ) : (
               <Grid container spacing={3}>
-                {data.members.map(({ username, avatar }: Member) => (
-                  <Grid item xs={12} sm={6} md={3} key={username}>
+                {data.users.map(({ id, username, avatar }: Member) => (
+                  <Grid key={id} item xs={12} sm={6} md={3}>
                     <CardMember username={username} avatar={avatar} />
                   </Grid>
                 ))}
