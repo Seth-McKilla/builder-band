@@ -24,8 +24,7 @@ const Home: NextPage = () => {
               Welcome to the Builder Band!
             </Typography>
             <Typography variant="h5" align="center">
-              Home of the supercharged ⚡ builders who have performed notable
-              gigs in the Gitcoin ecosystem.
+              {"The home of Gitcoin's high-performance ⚡ alumni network"}
             </Typography>
           </Grid>
         </Grid>
