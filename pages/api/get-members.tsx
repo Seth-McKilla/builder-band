@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Client, Intents } from "discord.js";
+import { Client } from "discord.js";
 const { DISCORD_TOKEN, GUILD_ID } = process.env;
 
 type Member = { username: string; avatar: string };
@@ -14,9 +14,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const client = new Client({
-    intents: [Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES],
-  });
+  const client = new Client({});
   await client.login(DISCORD_TOKEN);
 
   return client.on("ready", async () => {
