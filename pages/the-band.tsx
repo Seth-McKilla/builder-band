@@ -1,14 +1,24 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import useSWR from "swr";
+import fetcher from "../utils/fetcher";
 
 // Mui
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import LinearProgress from "@mui/material/LinearProgress";
 
 // Components
-import { Layout } from "../components";
+import { Layout, CardMember } from "../components";
+
+type Member = {
+  username: string;
+  avatar: string;
+};
 
 const Manifesto: NextPage = () => {
+  const { data } = useSWR("/api/get-members", fetcher);
+
   return (
     <div>
       <Head>
@@ -20,12 +30,20 @@ const Manifesto: NextPage = () => {
       <Layout>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center">
+            <Typography variant="h2" align="center" gutterBottom>
               The Band
             </Typography>
-            <Typography variant="body1" align="center">
-              Placeholder for the members of the Builder Band
-            </Typography>
+            {!data ? (
+              <LinearProgress />
+            ) : (
+              <Grid container spacing={3}>
+                {data.members.map(({ username, avatar }: Member) => (
+                  <Grid item xs={12} sm={6} md={3} key={username}>
+                    <CardMember username={username} avatar={avatar} />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Layout>

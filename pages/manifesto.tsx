@@ -20,7 +20,7 @@ const Manifesto: NextPage = () => {
       <Layout>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center">
+            <Typography variant="h2" align="center" gutterBottom>
               The Builder Band Manifesto
             </Typography>
             <Typography variant="body1" align="center">
