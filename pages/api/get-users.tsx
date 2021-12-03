@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-const { BOT_TOKEN, GUILD_ID } = process.env;
+const { DISCORD_BOT_TOKEN, DISCORD_GUILD_ID } = process.env;
 
 type User = { id: string; username: string; avatar: string };
 
@@ -14,10 +14,10 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const url = `https://discordapp.com/api/guilds/${GUILD_ID}/members`;
+    const url = `https://discordapp.com/api/guilds/${DISCORD_GUILD_ID}/members`;
     const response = await fetch(url, {
       headers: {
-        Authorization: `Bot ${BOT_TOKEN}`,
+        authorization: `Bot ${DISCORD_BOT_TOKEN}`,
       },
     });
 
