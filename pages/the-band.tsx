@@ -73,8 +73,8 @@ const Manifesto: NextPage = () => {
             />
           </Grid>
 
-          {!members ? (
-            <LinearProgress />
+          {!data ? (
+            <LinearProgress sx={{ width: "100%", marginTop: 2 }} />
           ) : (
             members.map(({ id, username, avatar }: Member) => (
               <Grid key={id} container item xs={12} sm={6} md={3}>
