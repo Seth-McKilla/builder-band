@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       mode: dark ? "dark" : "light",
     },
     typography: {
-      fontFamily: ["Libre Baskerville", "serif"].join(","),
+      fontFamily: ["Lato", "san-serif"].join(","),
     },
     components: {
       MuiCssBaseline: { styleOverrides },
