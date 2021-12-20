@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 // Mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,7 +16,14 @@ const MemberCard = (props: Props) => {
   const { username, avatar } = props;
 
   return (
-    <Card>
+    <Card
+      component={motion.div}
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.1 },
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
