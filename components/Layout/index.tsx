@@ -9,9 +9,11 @@ import Navbar from "./Navbar";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <Container>
+    <>
       <Navbar />
-      <PerfectScrollbar>{children}</PerfectScrollbar>
-    </Container>
+      <Container>
+        <PerfectScrollbar>{children}</PerfectScrollbar>
+      </Container>
+    </>
   );
 }

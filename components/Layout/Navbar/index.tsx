@@ -13,6 +13,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 // Components
 import ToggleDarkMode from "./ToggleDarkMode";
@@ -25,9 +29,11 @@ import { useEagerConnect, useInactiveListener } from "../../../hooks";
 const routes = ["manifesto", "the-band"];
 
 const ButtonAppBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const { activate, account, library } = useWeb3React<Web3Provider>();
+  const { activate, deactivate, account, library } =
+    useWeb3React<Web3Provider>();
   const walletName = library?.connection.url;
   const walletNameUpperSnake = _.toUpper(_.snakeCase(walletName)); // Convert to match constants keys
   const walletIcon = SUPPORTED_WALLETS[walletNameUpperSnake]?.iconURL;
@@ -70,15 +76,56 @@ const ButtonAppBar = () => {
 
             {!!account ? (
               <>
-                <Image
-                  src={walletIcon}
-                  alt={`${walletName} icon`}
-                  height={40}
-                  width={40}
-                />
-                <Typography noWrap ml={2} sx={{ maxWidth: 100 }}>
-                  {account}
-                </Typography>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={(e) => setAnchorEl(e.currentTarget)}
+                  sx={{
+                    textTransform: "none",
+                    marginLeft: 2,
+                    borderRadius: 5,
+                  }}
+                >
+                  <Image
+                    src={walletIcon}
+                    alt={`${walletName} icon`}
+                    height={30}
+                    width={30}
+                  />
+                  <Tooltip title={account}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        maxWidth: 100,
+                      }}
+                      noWrap
+                      ml={1}
+                    >
+                      {account}
+                    </Typography>
+                  </Tooltip>
+                  <KeyboardArrowDownIcon />
+                </Button>
+                <Menu
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={!!anchorEl}
+                  onClose={() => {
+                    setAnchorEl(null);
+                  }}
+                >
+                  <MenuItem onClick={() => deactivate()}>Deactivate</MenuItem>
+                </Menu>
               </>
             ) : (
               <Button
