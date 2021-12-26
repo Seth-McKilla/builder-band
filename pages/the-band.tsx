@@ -12,6 +12,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 // Components
 import { Layout, CardMember } from "../components";
+import {type} from "os"
 
 type Member = {
   id: string;
